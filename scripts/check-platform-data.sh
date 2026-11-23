@@ -8,7 +8,7 @@ cd "$(dirname "$0")/.."
 sha="$(tr -d '[:space:]' < crates/detect/data/UPSTREAM)"
 [[ "$sha" =~ ^[0-9a-f]{40}$ ]] || { echo "crates/detect/data/UPSTREAM must hold a full commit hash" >&2; exit 1; }
 upstream="$(mktemp)"
-curl -fsS --retry 3 -o "$upstream" "https://raw.githubusercontent.com/Droidtop/droidtop-platforms/$sha/engines-database.json"
+curl -fsS --retry 3 -o "$upstream" "https://raw.githubusercontent.com/mytop-project/droidtop-platforms/$sha/engines-database.json"
 if cmp -s "$upstream" "crates/detect/data/engines-database.json"; then
     echo "engines-database.json is droidtop-platforms' at $sha"
 else
